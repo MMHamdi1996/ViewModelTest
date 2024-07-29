@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mainVieModel = ViewModelProvider(this)[MainVieModel::class.java]
+
+        binding.numberTextView.text = mainVieModel.number.toString()
         binding.addButton.setOnClickListener {
             mainVieModel.number++
             binding.numberTextView.text = mainVieModel.number.toString()
