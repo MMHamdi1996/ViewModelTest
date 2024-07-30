@@ -16,16 +16,18 @@ class MainActivity : AppCompatActivity() {
 
         mainVieModel = ViewModelProvider(this)[MainVieModel::class.java]
 
-        mainVieModel.number.observe(this){
-            binding.numberTextView.text = it.toString()
+        mainVieModel.number.observe(this) {
+            binding.showNumberValueButton.text = it.toString()
         }
-
-        binding.addButton.setOnClickListener {
-           mainVieModel.setAddNumber()
+        mainVieModel.evenOrOdd.observe(this) {
+            if (it) {
+                binding.even.text = "زوج"
+            } else binding.even.text = "فرد"
         }
-
-        binding.AdderButton.setOnClickListener {
+        binding.addPlusButton.setOnClickListener {
             mainVieModel.setAddNumber()
+            mainVieModel.setEvenOrOdd()
         }
+
     }
 }
