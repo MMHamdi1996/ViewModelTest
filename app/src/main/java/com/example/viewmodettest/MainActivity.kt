@@ -16,10 +16,16 @@ class MainActivity : AppCompatActivity() {
 
         mainVieModel = ViewModelProvider(this)[MainVieModel::class.java]
 
-        binding.numberTextView.text = mainVieModel.number.toString()
+        mainVieModel.number.observe(this){
+            binding.numberTextView.text = it.toString()
+        }
+
         binding.addButton.setOnClickListener {
-            mainVieModel.number++
-            binding.numberTextView.text = mainVieModel.number.toString()
+           mainVieModel.setAddNumber()
+        }
+
+        binding.AdderButton.setOnClickListener {
+            mainVieModel.setAddNumber()
         }
     }
 }
